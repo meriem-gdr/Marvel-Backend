@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
-mongoose.connect("mongodb://localhost:27017/marvel");
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
