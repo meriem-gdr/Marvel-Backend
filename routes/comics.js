@@ -41,7 +41,7 @@ router.get("/comics", getUser, async (req, res) => {
   }
 });
 
-router.get("/comics/:characterId", async (req, res) => {
+router.get("/comics/:characterId", getUser, async (req, res) => {
   try {
     const characterId = req.params.characterId;
 
