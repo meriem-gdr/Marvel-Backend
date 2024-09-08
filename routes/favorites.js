@@ -25,6 +25,8 @@ router.post("/favorites/character", isAuthenticated, async (req, res) => {
     await user.save();
 
     return res.status(200).json({
+      id: characterId,
+      isFavorite: !existingFavorite,
       message: `CharacterId : ${characterId} ${
         existingFavorite ? "removed from" : "added to"
       } favorites`,
@@ -56,6 +58,8 @@ router.post("/favorites/comic", isAuthenticated, async (req, res) => {
     await user.save();
 
     return res.status(200).json({
+      id: comicId,
+      isFavorite: !existingFavorite,
       message: `ComicId : ${comicId} ${
         existingFavorite ? "removed from" : "added to"
       } favorites`,
