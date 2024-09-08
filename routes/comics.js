@@ -54,7 +54,19 @@ router.get("/comics/:characterId", async (req, res) => {
       }
     );
 
-    res.json(response.data);
+    const favoriteComics = req.user ? req.user.account.comics : [];
+
+    // add isFavorite in each result
+    const data = {
+      ...response.data,
+      comics: response.data.comics.map((comic) => {
+        const isFavorite = favoriteComics.includes(comic._id);
+
+        return { ...comic, isFavorite };
+      }),
+    };
+
+    res.json(data);
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
